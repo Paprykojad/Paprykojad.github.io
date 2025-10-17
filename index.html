@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> Strona Franciszka Gotkowskiego </h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+.lab {
+    text-align: center;
+}
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align:center;" >
+            <marquee direction="left">
+            Strona Franciszka Gotkowskiego
+            </marquee>
+        </h1>
+
+
+        <table style="width: 100%; border: 1px solid black;" border="1">
+            <tr>
+                <th> Numer Laboratorium </th>
+                <th> link </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lab">
+                        lab 1
+                    </div>
+                </td>
+                <td>
+                    <div class="lab">
+                        <a href="./lab1/index.html">lab1</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lab">
+                        lab 2
+                    </div>  
+                </td>
+                <td>
+                    <marquee direction="down" width="100%" height="100px" behavior="alternate" class="outlined">
+                    <marquee behavior="alternate">
+                    <a href="./lab2/kolumny.html">kolumny</a>
+                    </marquee>
+                    </marquee>
+                    <marquee direction="down" width="100%" height="100px" behavior="alternate" class="outlined">
+                    <marquee behavior="alternate">
+                    <a href="./lab2/galeria.html">galeria</a>
+                    </marquee>
+                    </marquee>
+                    <marquee direction="down" width="100%" height="100px" behavior="alternate" class="outlined">
+                    <marquee behavior="alternate">
+                    <a href="./lab2/formularz.html">formularz</a>
+                    </marquee>
+                    </marquee>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>
