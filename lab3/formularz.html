@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formularz</title>
+        <link rel="stylesheet" href="./css/form.css" />
+    </head>
+    <body style="background-color: #e0f1e7;">
+        <div class="flex">
+
+            <div class="center-box">
+                <!-- <p class="tytul">Formularz</p> -->
+                <h1>Formularz</h1>
+
+                <div class="joinedboxes">
+
+                    <div class="labelbox">
+                        <label class="text-label" for="Imie">Imie: </label>
+                        <input type="text" class="textbox" id="Imie"> 
+                    </div>
+
+                    <div class="labelbox">
+                        <label class="text-label" for="Nazwisko">Nazwisko: </label>
+                        <input type="text" class="textbox" id="Nazwisko"> 
+                    </div>
+
+                </div>
+
+
+                <div class="joinedboxes">
+
+                    <div class="labelbox">
+                        <label class="text-label" for="Kraj">Kraj: </label>
+                        <input type="text" class="textbox" id="Kraj"> 
+                    </div>
+
+
+                    <div class="labelbox">
+                        <label class="text-label" for="Miasto">Miasto: </label>
+                        <input type="text" class="textbox" id="Miasto"> 
+                    </div>
+
+
+                    <div class="labelbox">
+                        <label class="text-label" for="Ulica">Ulica: </label>
+                        <input type="text" class="textbox" id="Ulica"> 
+                    </div>
+                </div>
+
+
+                <div class="labelbox">
+                    <label class="text-label" for="Adres Email">Adres Email: </label>
+                    <input type="text" class="textbox" id="Adres Email"> 
+                </div>
+
+
+                <div class="radio">
+                    <label class="" for="Data Urodzenia">Data Urodzenia: </label>
+                    <input type="date" id="Data Urodzenia"> 
+                </div>
+
+
+                <!-- <label class="text-label" for="Prawo jazdy">Prawo jazdy: </label> -->
+                <h3 style="text-align: left;">Prawo jazdy</h3>
+                <div class="radio">
+                    <label class="" for="Brak">Brak: </label>
+                    <input type="radio" id="brak" value="Brak" name="Brak">
+                </div>
+                <!-- <br> -->
+                <div class="radio">
+                    <label class="" for="Kategoria B">Kategoria B: </label>
+                    <input type="radio" id="katb" value="Brak" name="Katb">
+                </div>
+                <!-- <br> -->
+                <div class="radio">
+                    <label class="" for="Inna">Inna: </label>
+                    <input type="radio" id="brak" value="Inna" name="Inna">
+                </div>
+                <br>
+
+                <div class="radio">
+
+                    <label class="" for="Telefon kontaktowy">Telefon kontaktowy: </label>
+                    <input type="tel" id="Telefon kontaktowy" placeholder="000-000-000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}">
+                </div>
+
+                <br>
+
+                <div class="radio">
+                    <label class="text-label" for="Uwagi">Uwagi: </label>
+                    <textarea id="Uwagi" rows="3" cols="25" style="width: 254px; height: 84px;"></textarea>
+                </div>
+                <br>
+
+
+                <br>
+                <br>
+                <button style="width: 15rem; height: 5; background-color: red; border-radius: 1rem; color: white; font-size: 20px;" type="button">Wyślij formularz</button>
+
+                <div>
+                <label style="color: gainsboro;" class="" for="Newsletter">Wypisz mnie na newslettera: </label>
+                <input id="Newsletter" type="checkbox">
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>
