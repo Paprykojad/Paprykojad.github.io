@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="./css/styles.css" />
+
+        <script>
+            var obliczenia = ""
+
+            var nawias = 1
+            function dobryNawias() {
+                if (nawias % 2 == 1) {
+                    nawias++
+                    return "("
+                } else {
+                    nawias++
+                    return ")"
+                }
+            }
+
+            function licz() {
+                try {
+                    w = eval(obliczenia)
+                } catch (err) {
+                    w = err.name
+                }
+                return w
+            }
+
+            function wypiszObliczenia() {
+                textbox = document.getElementById('obliczenia')
+                textbox.textContent = obliczenia
+            }
+
+            function wypiszWynik() {
+                textbox = document.getElementById('wynik')
+                textbox.textContent = licz()
+            }
+
+            function wypiszOba() {
+                wypiszObliczenia()
+                wypiszWynik()
+            }
+
+            function dodajZnak(znak) {
+                obliczenia += znak
+                console.log("dodaję znak:", znak)
+                wypiszOba()
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <div class="flex">
+
+
+            <div class="center-box">
+                <div class="textbox">
+                    <p id="obliczenia" class="liczby"></p>
+                </div>
+                <br>
+                <div class="textbox">
+                    <!-- <p>Wynik:</p> -->
+                    <p id="wynik" class="liczby"></p>
+                </div>
+
+                <br>
+
+                <div class="grid">
+
+
+                    <button onclick="dodajZnak(this.textContent)">0</button>
+                    <button onclick="dodajZnak(this.textContent)">1</button>
+                    <button onclick="dodajZnak(this.textContent)">2</button>
+                    <button onclick="dodajZnak(this.textContent)">+</button>
+                    <button onclick="dodajZnak(this.textContent)">3</button>
+                    <button onclick="dodajZnak(this.textContent)">4</button>
+                    <button onclick="dodajZnak(this.textContent)">5</button>
+                    <button onclick="dodajZnak(this.textContent)">-</button>
+                    <button onclick="dodajZnak(this.textContent)">6</button>
+                    <button onclick="dodajZnak(this.textContent)">7</button>
+                    <button onclick="dodajZnak(this.textContent)">8</button>
+                    <button onclick="dodajZnak(this.textContent)">*</button>
+                    <button onclick="dodajZnak(this.textContent)">9</button>
+                    <button onclick="dodajZnak(dobryNawias())">( )</button>
+                    <button onclick="obliczenia = ''; wypiszOba() ">C</button>
+                    <button onclick="dodajZnak(this.textContent)">/</button>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
