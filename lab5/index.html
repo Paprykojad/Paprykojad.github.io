@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Faktura xml, xsl, js</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <button onclick="pobierz('faktura.xml', xml)">Pobierz XML</button>
+  <button onclick="pobierz('faktura.xsl', xsl)">Pobierz XSL</button>
+  <div id="mojhtml">
+      <div id="wynik"></div>
+      <img src="faktura.jpg" alt="">
+  </div>
+
+  <script>
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<faktura>
+  <sprzedawca>
+    <nazwa>Firma ABC Sp. z o.o.</nazwa>
+    <adres>ul. Przykładowa 123, 00-001 Warszawa</adres>
+    <nip>1234567890</nip>
+  </sprzedawca>
+  <produkty>
+    <produkt>
+      <nazwa>Laptop Dell</nazwa>
+      <podstawa>26.20.11.0</podstawa>
+      <ilosc>2</ilosc>
+      <cena_zl>2500</cena_zl>
+      <cena_gr>50</cena_gr>
+    </produkt>
+    <produkt>
+      <nazwa>Monitor Samsung</nazwa>
+      <podstawa>26.20.13.0</podstawa>
+      <ilosc>3</ilosc>
+      <cena_zl>800</cena_zl>
+      <cena_gr>0</cena_gr>
+    </produkt>
+    <produkt>
+      <nazwa>Klawiatura Logitech</nazwa>
+      <podstawa>26.20.40.0</podstawa>
+      <ilosc>5</ilosc>
+      <cena_zl>150</cena_zl>
+      <cena_gr>99</cena_gr>
+    </produkt>
+  </produkty>
+</faktura>`;
+
+const xsl = `<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <div>To jest przykładowy XSL — w tej wersji transformacja wykonywana jest przez JS.</div>
+  </xsl:template>
+</xsl:stylesheet>`;
+
+function wyswietlFakture(xmlString) {
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+  const nazwa = xmlDoc.querySelector("sprzedawca > nazwa").textContent;
+  const adres = xmlDoc.querySelector("sprzedawca > adres").textContent;
+  const nip = xmlDoc.querySelector("sprzedawca > nip").textContent;
+
+  let html = `
+            <p id="sprzedawca">${nazwa}</p>
+            <p id="adressprzedawcy">${adres}</p>
+            <p id="nip">${nip}</p>
+            <br>
+            `;
+  html += `<table id="tabelka">`;
+
+  let suma = 0;
+  let nr = 1; // Zmienna do numerowania produktów
+  xmlDoc.querySelectorAll("produkt").forEach((p) => {
+    const n = p.querySelector("nazwa").textContent;
+    const podstawa = p.querySelector("podstawa").textContent;
+    const il = +p.querySelector("ilosc").textContent;
+    const zl = +p.querySelector("cena_zl").textContent;
+    const gr = +p.querySelector("cena_gr").textContent;
+    const cenawgroszach = zl * 100 + gr;
+    const cenazl = Math.floor(cenawgroszach / 100);
+    const cenagr = cenawgroszach % 100;
+    const wartosczl = Math.floor((cenawgroszach * il) / 100);
+    const wartoscgr = (cenawgroszach * il) % 100;
+    suma += cenawgroszach;
+
+    html += `
+        <tr>
+            <td id="tnr">${nr}</td>
+            <td id="tprodukt">${n}</td>
+            <td id="tpodstawa">${podstawa}</td>
+            <td id="til">${il}</td>
+            <td id="tcenazl">${cenazl}</td>
+            <td id="tcenagr">${cenagr}</td>
+            <td id="twartosczl">${wartosczl}</td>
+            <td id="twartoscgr">${wartoscgr}</td>
+        </tr>`;
+    nr++; 
+  });
+
+  html += `
+        </table>
+        <br>
+        <p id="sumazl">${Math.floor(suma / 100)}</p>
+        <p id="sumagr">${suma % 100}</p>
+        `;
+  document.getElementById("wynik").innerHTML = html;
+}
+function pobierz(nazwa, zawartosc) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([zawartosc], {type: "text/xml"}));
+    a.download = nazwa;
+    a.click();
+}
+
+    wyswietlFakture(xml);
+  </script>
+</body>
+</html>
