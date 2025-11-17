@@ -14,7 +14,7 @@
   </div>
 
   <script>
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <faktura>
   <sprzedawca>
     <nazwa>Firma ABC Sp. z o.o.</nazwa>
@@ -46,7 +46,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </produkty>
 </faktura>`;
 
-const xsl = `<?xml version="1.0" encoding="UTF-8"?>
+let xsl = `<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:template match="/">
     <div>To jest przykładowy XSL — w tej wersji transformacja wykonywana jest przez JS.</div>
@@ -54,11 +54,11 @@ const xsl = `<?xml version="1.0" encoding="UTF-8"?>
 </xsl:stylesheet>`;
 
 function wyswietlFakture(xmlString) {
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-  const nazwa = xmlDoc.querySelector("sprzedawca > nazwa").textContent;
-  const adres = xmlDoc.querySelector("sprzedawca > adres").textContent;
-  const nip = xmlDoc.querySelector("sprzedawca > nip").textContent;
+  let parser = new DOMParser();
+  let xmlDoc = parser.parseFromString(xmlString, "text/xml");
+  let nazwa = xmlDoc.querySelector("sprzedawca > nazwa").textContent;
+  let adres = xmlDoc.querySelector("sprzedawca > adres").textContent;
+  let nip = xmlDoc.querySelector("sprzedawca > nip").textContent;
 
   let html = `
             <p id="sprzedawca">${nazwa}</p>
@@ -71,16 +71,16 @@ function wyswietlFakture(xmlString) {
   let suma = 0;
   let nr = 1; // Zmienna do numerowania produktów
   xmlDoc.querySelectorAll("produkt").forEach((p) => {
-    const n = p.querySelector("nazwa").textContent;
-    const podstawa = p.querySelector("podstawa").textContent;
-    const il = +p.querySelector("ilosc").textContent;
-    const zl = +p.querySelector("cena_zl").textContent;
-    const gr = +p.querySelector("cena_gr").textContent;
-    const cenawgroszach = zl * 100 + gr;
-    const cenazl = Math.floor(cenawgroszach / 100);
-    const cenagr = cenawgroszach % 100;
-    const wartosczl = Math.floor((cenawgroszach * il) / 100);
-    const wartoscgr = (cenawgroszach * il) % 100;
+    let n = p.querySelector("nazwa").textContent;
+    let podstawa = p.querySelector("podstawa").textContent;
+    let il = +p.querySelector("ilosc").textContent;
+    let zl = +p.querySelector("cena_zl").textContent;
+    let gr = +p.querySelector("cena_gr").textContent;
+    let cenawgroszach = zl * 100 + gr;
+    let cenazl = Math.floor(cenawgroszach / 100);
+    let cenagr = cenawgroszach % 100;
+    let wartosczl = Math.floor((cenawgroszach * il) / 100);
+    let wartoscgr = (cenawgroszach * il) % 100;
     suma += cenawgroszach;
 
     html += `
@@ -106,7 +106,7 @@ function wyswietlFakture(xmlString) {
   document.getElementById("wynik").innerHTML = html;
 }
 function pobierz(nazwa, zawartosc) {
-    const a = document.createElement("a");
+    let a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([zawartosc], {type: "text/xml"}));
     a.download = nazwa;
     a.click();

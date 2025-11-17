@@ -48,7 +48,7 @@ p, table  {
 }
 
 td {
-    /* background-color: red; */
+    background-color: red;
     height: 28px;
 }
 
